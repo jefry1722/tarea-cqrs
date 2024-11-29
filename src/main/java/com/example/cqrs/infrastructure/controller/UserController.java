@@ -5,6 +5,7 @@ import com.example.cqrs.application.queries.GetUserQuery;
 import com.example.cqrs.application.services.CreateUserCommandHandler;
 import com.example.cqrs.application.services.GetUserQueryHandler;
 import com.example.cqrs.domain.entities.User;
+import com.example.cqrs.domain.entities.UserView;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +28,8 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable Long id) {
-        User user = getUserQueryHandler.handle(new GetUserQuery(id));
+    public ResponseEntity<UserView> getUser(@PathVariable Long id) {
+        UserView user = getUserQueryHandler.handle(new GetUserQuery(id));
         return ResponseEntity.ok(user);
     }
 }
